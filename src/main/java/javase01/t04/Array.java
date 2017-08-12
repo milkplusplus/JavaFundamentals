@@ -1,7 +1,5 @@
 package javase01.t04;
 
-import com.sun.istack.internal.NotNull;
-
 class Array {
 
     static double maxVal(double[] a) {
@@ -9,10 +7,11 @@ class Array {
         double[] sum = new double[a.length / 2];
         for (int i = 0; i < sum.length; i++ ) {
             sum[i] = a[i] + a[a.length - i - 1];
-            System.out.println();
+            System.out.println("sum[" + i + "] = " + sum[i]);
             if (sum[i] > max)
                 max = sum[i];
         }
+        System.out.println("max value is " + max);
         return max;
     }
 }
