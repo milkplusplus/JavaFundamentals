@@ -8,7 +8,7 @@ public class DecrSequenseTest {
 
     @Test
     public void solve(){
-        double eps = 0.2;
+        double eps = 0.00004;
         long result = DecrSequense.solve(eps);
         double a = 1 / Math.pow(result + 1, 2);
         double prevA = 1 / Math.pow(result, 2);
