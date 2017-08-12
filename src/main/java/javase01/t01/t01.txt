@@ -1,0 +1,5 @@
+//Enter this commands in console from the project directory
+cd src/main
+mkdir bin
+javac -d bin -cp ./java java/javase01/t01/main/Main.java
+java -cp ./bin javase01/t01/main/Main
