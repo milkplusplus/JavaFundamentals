@@ -3,6 +3,7 @@ package javase02.t06_t07;
 
 import java.lang.annotation.*;
 
+@SuppressWarnings("unused")
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

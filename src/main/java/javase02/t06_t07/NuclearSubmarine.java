@@ -1,7 +1,7 @@
 package javase02.t06_t07;
 
 @MyAnno()
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class NuclearSubmarine {
 
     private NuclearEngine nuclearEngine = new NuclearEngine();
