@@ -1,5 +1,7 @@
 package javase02.t06_t07;
 
+@MyAnno()
+@SuppressWarnings("unused")
 public class NuclearSubmarine {
 
     private NuclearEngine nuclearEngine = new NuclearEngine();
@@ -13,7 +15,7 @@ public class NuclearSubmarine {
         this.nuclearFuelLevel = nuclearFuelLevel;
     }
 
-    class NuclearEngine {
+    private class NuclearEngine {
         private boolean start() {
             if (nuclearFuelLevel > 0){
                 nuclearFuelLevel--;
