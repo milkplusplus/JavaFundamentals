@@ -1,6 +1,6 @@
 package javase01.t06;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class NotepadRecord {
 
     private String note;

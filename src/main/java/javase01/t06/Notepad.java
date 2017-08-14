@@ -36,4 +36,12 @@ public class Notepad {
         else
             throw new ArrayIndexOutOfBoundsException("Index out of acceptable range");
     }
+
+    public void showAllNotes() {
+        System.out.println("Notes in this notepad:");
+        for (NotepadRecord note : notes) {
+            if (note != null)
+                System.out.println(note.getNote());
+        }
+    }
 }
