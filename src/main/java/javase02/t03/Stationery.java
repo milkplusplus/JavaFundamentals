@@ -6,6 +6,8 @@ public abstract class Stationery {
     private String name;
     private int cost;
 
+    public abstract void printAllFields();
+
     Stationery(String name, int cost) {
         this.name = name;
         this.cost = cost;

@@ -27,4 +27,13 @@ public class Pencil extends Stationery {
     public void setGraphiteGradingScale(String graphiteGradingScale) {
         this.graphiteGradingScale = graphiteGradingScale;
     }
+
+    @Override
+    public void printAllFields() {
+        System.out.println("\nPencil:");
+        System.out.println("name = " + getName());
+        System.out.println("cost = " + getCost());
+        System.out.println("isColored = " + isColored);
+        System.out.println("graphiteGradingScale = " + graphiteGradingScale);
+    }
 }

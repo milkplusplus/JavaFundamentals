@@ -27,4 +27,13 @@ public class Notepad extends Stationery {
     public void setPageColour(String pageColour) {
         this.pageColour = pageColour;
     }
+
+    @Override
+    public void printAllFields() {
+        System.out.println("\nNotepad:");
+        System.out.println("name = " + getName());
+        System.out.println("cost = " + getCost());
+        System.out.println("countOfPages = " + countOfPages);
+        System.out.println("pageColour = " + pageColour);
+    }
 }

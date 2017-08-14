@@ -30,4 +30,10 @@ public class Employee {
             sum += aStationeryList.getCost();
         return sum;
     }
+
+//    public void printStationery() {
+//        for (Stationery aStationeryList : stationeryList)
+//            sum += aStationeryList.getCost();
+//    }
+
 }
