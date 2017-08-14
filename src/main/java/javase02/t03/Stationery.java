@@ -1,5 +1,6 @@
 package javase02.t03;
 
+@SuppressWarnings("unused")
 public abstract class Stationery {
 
     private String name;

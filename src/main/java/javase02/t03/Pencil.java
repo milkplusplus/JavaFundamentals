@@ -1,5 +1,6 @@
 package javase02.t03;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Pencil extends Stationery {
 
     private boolean isColored;
