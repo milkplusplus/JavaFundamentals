@@ -2,7 +2,7 @@ package javase01.t06;
 
 public class NotepadRecord {
 
-    private String note;
+    private String note = null;
 
     public NotepadRecord(String note) {
         this.note = note;
