@@ -1,5 +1,9 @@
 package javase01.t04;
 
+/**
+ * Determines max value of (a_1 + a_2n, a_2 + a_2n-1, ..., a_n + a_n+1) for (a_1, a_2, ..., a_2n) input array.
+ */
+
 class Array {
 
     static double maxVal(double[] a) {

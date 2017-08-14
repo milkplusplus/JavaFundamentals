@@ -1,5 +1,9 @@
 package javase01.t05;
 
+/**
+ * Prints two-diagonal square matrix with 1 on the diagonals.
+ */
+
 @SuppressWarnings("unused")
 class Matrix {
     static void print(int n) {
