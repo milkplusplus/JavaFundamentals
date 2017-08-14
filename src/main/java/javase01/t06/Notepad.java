@@ -24,6 +24,16 @@ public class Notepad {
             notes[index] = null;
         else
             throw new ArrayIndexOutOfBoundsException("Index out of acceptable range");
+    }
 
+    public void editNote (int index, String newNote) {
+        if ((index >= 0) && (index < notes.length)) {
+            if (notes[index] != null)
+                notes[index].setNote(newNote);
+            else
+                throw new NullPointerException("There is no note for this index");
+        }
+        else
+            throw new ArrayIndexOutOfBoundsException("Index out of acceptable range");
     }
 }
