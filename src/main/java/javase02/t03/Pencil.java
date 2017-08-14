@@ -2,21 +2,21 @@ package javase02.t03;
 
 public class Pencil extends Stationery {
 
-    private String color;
+    private boolean isColored;
     private String graphiteGradingScale;
 
-    public Pencil(String name, int cost, String color, String graphiteGradingScale) {
+    public Pencil(String name, int cost, boolean isColored, String graphiteGradingScale) {
         super(name, cost);
-        this.color = color;
+        this.isColored = isColored;
         this.graphiteGradingScale = graphiteGradingScale;
     }
 
-    public String getColor() {
-        return color;
+    public boolean isColored() {
+        return isColored;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setColored(boolean colored) {
+        isColored = colored;
     }
 
     public String getGraphiteGradingScale() {
