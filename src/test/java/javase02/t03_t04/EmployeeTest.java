@@ -17,9 +17,9 @@ public class EmployeeTest {
         Pencil p4 = new Pencil("Pencil 4", 10, false, "2B");
         Notepad n1 = new Notepad("Notepad 1", 14, 20, "White");
         Notepad n2 = new Notepad("Notepad 2", 100, 100, "White");
-        Notepad n3 = new Notepad("Notepad 3", 700, 2000, "Red");
+        Notepad n3 = new Notepad("Notepad 3", 100, 2000, "Red");
         Rubber r1 = new Rubber("Rubber 1", 5);
-        Rubber r2 = new Rubber("Rubber 2", 20);
+        Rubber r2 = new Rubber("Rubber 2", 100);
         employee.addItemToStationary(p1);
         employee.addItemToStationary(p2);
         employee.addItemToStationary(p3);
@@ -33,13 +33,21 @@ public class EmployeeTest {
 
     @Test
     public void t03Test() {
-        employee.printStationery();
-        assertEquals(1699,employee.getStationeryCost());
+        assertEquals(1179,employee.getStationeryCost());
     }
 
     @Test
     public void t04Test() {
-
+        employee.printStationery();
+        System.out.println("-----------------------------------SORTED_BY_COST-----------------------------------");
+        employee.sortByCost();
+        employee.printStationery();
+        System.out.println("-----------------------------------SORTED_BY_NAME-----------------------------------");
+        employee.sortByName();
+        employee.printStationery();
+        System.out.println("------------------------------SORTED_BY_COST_AND_NAME-------------------------------");
+        employee.sortByCostAndName();
+        employee.printStationery();
     }
 
 }
