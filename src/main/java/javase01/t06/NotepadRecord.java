@@ -1,8 +1,9 @@
 package javase01.t06;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class NotepadRecord {
 
-    private String note = null;
+    private String note;
 
     public NotepadRecord(String note) {
         this.note = note;

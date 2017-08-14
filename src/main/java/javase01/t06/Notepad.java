@@ -1,6 +1,6 @@
 package javase01.t06;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess", "UnusedReturnValue"})
 public class Notepad {
 
     private NotepadRecord[] notes;
@@ -19,4 +19,11 @@ public class Notepad {
         return false;
     }
 
+    public void deleteNote (int index) {
+        if ((index >= 0) && (index < notes.length))
+            notes[index] = null;
+        else
+            throw new ArrayIndexOutOfBoundsException("Index out of acceptable range");
+
+    }
 }
