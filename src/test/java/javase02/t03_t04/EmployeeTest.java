@@ -1,4 +1,4 @@
-package javase02.t03;
+package javase02.t03_t04;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +33,13 @@ public class EmployeeTest {
 
     @Test
     public void t03Test() {
+        employee.printStationery();
         assertEquals(1699,employee.getStationeryCost());
+    }
+
+    @Test
+    public void t04Test() {
+
     }
 
 }

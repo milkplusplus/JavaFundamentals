@@ -1,4 +1,4 @@
-package javase02.t03;
+package javase02.t03_t04;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class Notepad extends Stationery {

@@ -1,4 +1,4 @@
-package javase02.t03;
+package javase02.t03_t04;
 
 import java.util.LinkedList;
 
@@ -31,9 +31,9 @@ public class Employee {
         return sum;
     }
 
-//    public void printStationery() {
-//        for (Stationery aStationeryList : stationeryList)
-//            sum += aStationeryList.getCost();
-//    }
+    public void printStationery() {
+        for (Stationery aStationeryList : stationeryList)
+            aStationeryList.printAllFields();
+    }
 
 }
