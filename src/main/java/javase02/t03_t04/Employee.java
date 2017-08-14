@@ -42,7 +42,7 @@ public class Employee {
     }
 
     public void sortByName(){
-        this.stationeryList.sort( (Stationery s1, Stationery s2) -> s1.getName().compareTo(s2.getName()) );
+        this.stationeryList.sort(Comparator.comparing(Stationery::getName));
     }
 
     public void sortByCostAndName(){
