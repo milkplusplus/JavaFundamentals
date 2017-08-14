@@ -1,0 +1,32 @@
+package javase02.t02;
+
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class Stationery {
+
+    private String name = "Default itemName";
+    private int cost = 100;
+
+    public Stationery() {
+    }
+
+    public Stationery(String name, int cost) {
+        this.name = name;
+        this.cost = cost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+}
