@@ -3,11 +3,11 @@ package javase02.t05;
 public class DisciplineListener <T extends Number> {
 
     Student student;
-    T[] grades;
+    T grade;
 
-    public DisciplineListener(Student student, T[] grades) {
+    public DisciplineListener(Student student, T grade) {
         this.student = student;
-        this.grades = grades;
+        this.grade = grade;
     }
 
 }

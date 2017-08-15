@@ -1,6 +1,6 @@
 package javase02.t05;
 
-public enum GrageType {
+public enum GradeType {
     INTEGER,
     DECIMAL
 }

@@ -4,25 +4,22 @@ import java.util.LinkedList;
 
 public enum Discipline {
 
-    MATH(GrageType.DECIMAL),
-    MUSIC(GrageType.INTEGER),
-    SPORT(GrageType.INTEGER);
+    MATH(GradeType.DECIMAL),
+    MUSIC(GradeType.INTEGER),
+    SPORT(GradeType.INTEGER);
 
     LinkedList<DisciplineListener> listeners = new LinkedList<>();
-    GrageType grageType;
+    GradeType gradeType;
 
-    Discipline(GrageType st) {
-        this.grageType = st;
+    Discipline(GradeType st) {
+        this.gradeType = st;
     }
 
-    public void addListener (Student student) {
-        switch (this.grageType) {
-            case INTEGER: listeners.add(new DisciplineListener(student, new Integer[100]));
-            case DECIMAL: listeners.add(new DisciplineListener(student, new Double[100]));
+    public void addListener (Student student, int grade) {
+        switch (this.gradeType) {
+            case INTEGER: listeners.add(new DisciplineListener(student, grade));
+            case DECIMAL: listeners.add(new DisciplineListener(student, grade));
         }
     }
 
-    public LinkedList<DisciplineListener> getListeners() {
-        return listeners;
-    }
 }
