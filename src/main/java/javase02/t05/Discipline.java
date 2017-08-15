@@ -8,9 +8,9 @@ public enum Discipline {
 
     MATH(GradeType.DECIMAL),
     MUSIC(GradeType.INTEGER),
-    SPORT(GradeType.INTEGER),
+    SPORT(GradeType.DECIMAL),
     GEOGRAPHY(GradeType.INTEGER),
-    ENGLISH(GradeType.INTEGER);
+    ENGLISH(GradeType.DECIMAL);
 
     private LinkedList<DisciplineListener> listeners = new LinkedList<>();
     private GradeType gradeType;
@@ -20,32 +20,54 @@ public enum Discipline {
     }
 
     @SuppressWarnings("unchecked")
-    public void addListener(Student student, int grade) {
+    public <T extends Number> void addListener (Student student, T grade) {
         switch (this.gradeType) {
-            case INTEGER: listeners.add(new DisciplineListener(student, grade, this));
-            case DECIMAL: listeners.add(new DisciplineListener(student, grade, this));
+            case INTEGER:
+                listeners.add(new DisciplineListener(student, grade.intValue(), this));
+                    break;
+            case DECIMAL: listeners.add(new DisciplineListener(student, grade.doubleValue(), this));
+                    break;
         }
     }
 
     public static DisciplineListener bestStudentGradle(Student targetStudent) {
-        LinkedList <DisciplineListener> intGrades = new LinkedList<>();
+        LinkedList <DisciplineListener> gradeList = new LinkedList<>();
         for (Discipline discipline: Discipline.values()) {
             for (int i = 0; i < discipline.listeners.size(); i++) {
                 if (discipline.listeners.get(i).getStudent() == targetStudent)
-                    intGrades.add(discipline.listeners.get(i));
+                    gradeList.add(discipline.listeners.get(i));
             }
         }
-        if (intGrades.size() != 0) {
-            intGrades.sort(new Comparator<DisciplineListener>() {      // Will realize it now not only for Integers
-                @Override
-                public int compare(DisciplineListener o1, DisciplineListener o2) {
-
-                    return (int) o1.getGrade() - (int) o2.getGrade();
-                }
-            });
-            return intGrades.getLast();
-        }
+        if (gradeList.size() != 0)
+            return findBestListenerGrade(gradeList);
         return null;
+    }
+
+    private static DisciplineListener findBestListenerGrade(LinkedList<DisciplineListener> gradeList) {
+            gradeList.sort(Comparator.comparing(DisciplineListener::getDiscipline));
+            LinkedList<DisciplineListener> IntegerGradeList = new LinkedList<>();
+            LinkedList<DisciplineListener> DoubleGradeList = new LinkedList<>();
+            DisciplineListener current = gradeList.getFirst();
+            int counter = 0;
+            for (; (counter < gradeList.size()) && (current.getDiscipline().gradeType != GradeType.DECIMAL); counter++)
+                IntegerGradeList.add(current);
+            for (; (counter < gradeList.size()) && (current.getDiscipline().gradeType != GradeType.DECIMAL); counter++)
+                DoubleGradeList.add(current);
+            if ((IntegerGradeList.size() == 0) || (DoubleGradeList.size() == 0)) {
+                 if (IntegerGradeList.size() == 0){
+                     DoubleGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) -> (Double.compare((Double)lis1.getGrade(), (Double)lis2.getGrade())));
+                     return DoubleGradeList.getLast();
+                 }
+                 else {
+                     IntegerGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) -> (Integer)lis1.getGrade() - (Integer) lis2.getGrade());
+                     return IntegerGradeList.getLast();
+                 }
+            }
+            DoubleGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) -> (Double.compare((Double)lis1.getGrade(), (Double)lis2.getGrade())));
+            IntegerGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) -> (Integer)lis1.getGrade() - (Integer) lis2.getGrade());
+            if ( Double.compare(IntegerGradeList.getLast().getGrade().doubleValue(), DoubleGradeList.getLast().getGrade().doubleValue()) >= 0 )
+                return IntegerGradeList.getLast();
+            return DoubleGradeList.getLast();
     }
 
     public GradeType getGradeType() {
