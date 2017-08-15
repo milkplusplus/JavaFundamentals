@@ -1,14 +1,14 @@
 package javase02.t05;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Student {
 
     private String name;
-    private String group;
+    private String universityGroup;
 
-    public Student(String name, String group) {
+    public Student(String name, String universityGroup) {
         this.name = name;
-        this.group = group;
+        this.universityGroup = universityGroup;
     }
 
     public String getName() {
@@ -19,11 +19,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getGroup() {
-        return group;
+    public String getUniversityGroup() {
+        return universityGroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setUniversityGroup(String universityGroup) {
+        this.universityGroup = universityGroup;
     }
 }
