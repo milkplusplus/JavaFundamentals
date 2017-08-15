@@ -6,11 +6,12 @@ import java.util.LinkedList;
 @SuppressWarnings("unused")
 public enum Discipline {
 
-    MATH(GradeType.DECIMAL),
+    MATH(GradeType.INTEGER),
     MUSIC(GradeType.INTEGER),
     SPORT(GradeType.DECIMAL),
     GEOGRAPHY(GradeType.INTEGER),
-    ENGLISH(GradeType.DECIMAL);
+    ENGLISH(GradeType.INTEGER),
+    FRENCH(GradeType.DECIMAL);
 
     private LinkedList<DisciplineListener> listeners = new LinkedList<>();
     private GradeType gradeType;
@@ -62,15 +63,13 @@ public enum Discipline {
                      return DoubleGradeList.getLast();
                  }
                  else {
-                     IntegerGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) ->
-                             (Integer)lis1.getGrade() - (Integer) lis2.getGrade());
+                     IntegerGradeList.sort(Comparator.comparingInt(lis -> (Integer) lis.getGrade()));
                      return IntegerGradeList.getLast();
                  }
             }
             DoubleGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) ->
                     (Double.compare((Double)lis1.getGrade(), (Double)lis2.getGrade())));
-            IntegerGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) ->
-                    (Integer)lis1.getGrade() - (Integer) lis2.getGrade());
+            IntegerGradeList.sort(Comparator.comparingInt(lis -> (Integer) lis.getGrade()));
             if ( Double.compare(IntegerGradeList.getLast().getGrade().doubleValue(),
                     DoubleGradeList.getLast().getGrade().doubleValue()) >= 0 )
                 return IntegerGradeList.getLast();
