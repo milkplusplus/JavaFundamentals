@@ -1,11 +1,10 @@
 package javase02.t05;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-@SuppressWarnings("unused")
+
 public class DisciplineTest {
 
     private Discipline music = Discipline.MUSIC;
@@ -19,11 +18,6 @@ public class DisciplineTest {
     private Student Andrey = new Student("Andrey Belov", "5420");
     private Student Petya = new Student("Petya Javist", "5420");
 
-    @Before
-    public void setUp() {
-
-
-    }
 
     @Test
     public void addListener() {
@@ -37,9 +31,31 @@ public class DisciplineTest {
         assertEquals(4.29, (double) sport.getListeners().get(1).getGrade(), 0.0001);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     public void bestStudentGradle() {
-        System.out.println(music.getListeners().size());
+        music.addListener(Andrey, 6);
+        sport.addListener(Andrey, 7.13);
+        english.addListener(Andrey, 4);
+        geography.addListener(Andrey, 5);
+        french.addListener(Andrey, 2.94);
+        math.addListener(Andrey, 8);
+
+        english.addListener(Dima, 10);
+        english.addListener(Petya, 9);
+        math.addListener(Dima, 9);
+
+        DisciplineListener listener = Discipline.bestStudentGradle(Andrey);
+        assertEquals(8,listener.getGrade());
+        assertEquals(Andrey,listener.getStudent());
+
+        assertEquals(3, english.getListeners().size());
+    }
+
+    @Test
+    public void catchNull() {
+        Student Nikolai = new Student("Nikolai Nullcatcher", "5420");
+        assertNull(Discipline.bestStudentGradle(Nikolai));
     }
 
 }
