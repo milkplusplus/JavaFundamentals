@@ -1,11 +1,14 @@
 package javase03.t01;
 
 
-import java.time.LocalDate;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@SuppressWarnings("WeakerAccess")
 public class CrazyLogger {
 
-    StringBuilder stringBuilder = new StringBuilder();
+    private StringBuilder stringBuilder = new StringBuilder();
 
     public StringBuilder getStringBuilder() {
         return stringBuilder;
@@ -17,7 +20,9 @@ public class CrazyLogger {
 
     public void addMess(String message) {
         if (null != message)
-            stringBuilder.append(String.format("%s - %s", LocalDate.now(), message));
+            stringBuilder.append(String.format("%s - %s",
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-mm-YYYY : hh-mm")),
+                    message));
     }
 
 

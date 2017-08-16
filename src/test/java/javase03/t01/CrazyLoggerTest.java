@@ -14,4 +14,6 @@ public class CrazyLoggerTest {
         assertEquals(0,"2017-08-16 - Test string".compareTo(crazyLogger.getStringBuilder().toString()));
     }
 
+
+
 }
