@@ -21,7 +21,7 @@ public class CrazyLogger {
     public void addMess(String message) {
         if (null != message)
             stringBuilder.append(String.format("%s - %s",
-                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-mm-YYYY : hh-mm")),
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-YYYY : hh-mm")),
                     message));
     }
 
