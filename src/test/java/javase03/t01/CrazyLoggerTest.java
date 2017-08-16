@@ -10,8 +10,6 @@ import static org.junit.Assert.*;
 public class CrazyLoggerTest {
 
     private CrazyLogger crazyLogger = new CrazyLogger();
-    private LinkedList<String> list1;
-    private LinkedList<String> list2;
 
     @Before
     public void setUp() {
@@ -25,14 +23,14 @@ public class CrazyLoggerTest {
 
     @Test
     public void searchExactMatch(){
-        list1 = crazyLogger.searchExactMatch("Test");
+        LinkedList<String> list1 = crazyLogger.searchExactMatch("Test");
         assertEquals(true, ((list1.size() == 1) && list1.getFirst().contains("Test")));
         System.out.println(list1.toString());
     }
 
     @Test
     public void searchContains(){
-        list2 = crazyLogger.searchContains("Test");
+        LinkedList<String> list2 = crazyLogger.searchContains("Test");
         assertEquals(true, (list2.size() == 5));
         System.out.println(list2.toString());
     }
