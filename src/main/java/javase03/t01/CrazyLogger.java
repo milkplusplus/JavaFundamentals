@@ -35,8 +35,10 @@ public class CrazyLogger {
 
     public LinkedList<String> searchExactMatch(String target) {
         LinkedList<String> searched = new LinkedList<>();
-        String [] strings = stringBuilder.toString().split("\n");
-
+        String[] strings = stringBuilder.toString().split("\n");
+        for (String i : strings)
+            if ((21 == i.indexOf(target, 21)) && (i.length() == 23 + target.length()))
+                searched.add(i);
         return searched;
     }
 }
