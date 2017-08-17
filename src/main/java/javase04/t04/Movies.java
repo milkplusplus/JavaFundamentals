@@ -3,6 +3,7 @@ package javase04.t04;
 import java.io.*;
 import java.util.*;
 
+@SuppressWarnings("WeakerAccess")
 public class Movies {
 
     private Map<String, Set<String>> collection = new HashMap<>();
@@ -11,6 +12,7 @@ public class Movies {
         return collection;
     }
 
+    @SuppressWarnings("unchecked")
     public void load(String path) {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
             collection = (Map<String, Set<String>>)in.readObject();
@@ -35,7 +37,6 @@ public class Movies {
     }
 
     public Set<String> delete(String film) {
-        Set<String> s = collection.remove(film);
-        return s;
+        return collection.remove(film);
     }
 }

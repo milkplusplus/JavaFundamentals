@@ -1,6 +1,5 @@
 package javase04.t04;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Set;
