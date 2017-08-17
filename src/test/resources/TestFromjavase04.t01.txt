@@ -1,4 +1,4 @@
-package javase04.t01;
+﻿package javase04.t01;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -47,4 +47,3 @@ public class WordHunterByStream {
         return overallCounter;
     }
 }
-
