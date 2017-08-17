@@ -28,7 +28,7 @@ public class WordHunterByStream {
             while((bytesAvlbl = in.available()) != 0) {
                 buffBytes = new byte[bytesAvlbl];
                 in.read(buffBytes, 0, bytesAvlbl);
-                String[] buffStrings = new String(buffBytes).split("((\\s+)|\\[|\\()");
+                String[] buffStrings = new String(buffBytes).split("((\\s)|\\[|\\(|\\))+");
                 for (String JAVA_WORD : JAVA_WORDS) {
                     int localCounter = 0;
                     for (String string : buffStrings) {

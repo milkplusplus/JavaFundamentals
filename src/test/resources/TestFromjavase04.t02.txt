@@ -1,0 +1,46 @@
+﻿
+package javase04.t02;
+
+import java.io.*;
+
+@SuppressWarnings("WeakerAccess")
+public class WordHunterByChar {
+
+    static final String[] JAVA_WORDS = {
+            "abstract", "assert", "boolean", "break", "byte",
+            "case", "catch", "char", "class", "const",
+            "continue", "default", "do", "double", "else",
+            "enum", "extends", "final", "finally", "float",
+            "for", "goto", "if", "implements", "import",
+            "instanceof", "int", "interface", "long", "native",
+            "new", "package", "private", "protected", "public",
+            "return", "short", "static", "strictfp", "super",
+            "switch", "synchronized", "this", "throw", "throws",
+            "transient", "try", "void", "volatile", "while"};
+
+    public static int findWords(String pathFrom, String pathTo) {
+        int overallCounter = 0;
+        try (BufferedReader in = new BufferedReader(new FileReader(pathFrom));
+             BufferedWriter out = new BufferedWriter(new FileWriter(pathTo))) {
+            StringBuilder buffer = new StringBuilder();
+            int read;
+            while((read = in.read()) != -1)
+                buffer.append((char)read);
+            String[] buffStrings = new String(buffer).split("((\\s)|\\[|\\(|\\))+");
+            for (String JAVA_WORD : JAVA_WORDS) {
+                int localCounter = 0;
+                for (String string : buffStrings) {
+                    if (JAVA_WORD.equals(string))
+                        localCounter++;
+                }
+                if (localCounter > 0) {
+                    out.write(String.format("%s %d \n", JAVA_WORD, localCounter));
+                    overallCounter += localCounter;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return overallCounter;
+    }
+}

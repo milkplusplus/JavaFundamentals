@@ -8,8 +8,7 @@ public class WordHunterByStreamTest {
 
     @Test
     public void findWords() {
-        assertEquals(27, WordHunterByStream.findWords("src/test/resources/TestFromjavase04.t01.txt",
+        assertEquals(28, WordHunterByStream.findWords("src/test/resources/TestFromjavase04.t01.txt",
                 "src/test/resources/TestTojavase04.t01.txt"));
     }
-
 }
