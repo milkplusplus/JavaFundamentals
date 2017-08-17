@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("WeakerAccess")
 public class Parser {
@@ -21,8 +24,22 @@ public class Parser {
         return content;
     }
 
+    // also the task says that i need to do method which should determine
+    // "ссылается ли автор на рисунки последовательно или нет", but i don't understand what it mean
+    @SuppressWarnings("SingleCharAlternation")
+    public static LinkedList<String> getPicRefers(StringBuilder content) {
+        LinkedList<String> list = new LinkedList<>();
+        Pattern p = Pattern.compile("[А-ЯA-Z]([«»\\wа-яёА-Я\\d-();&,\\s]*(([Рр]ис(ун(ке|кам|ках|ком|ками|ок|ки|ку|ка)|\\.))(\\d|\\s\\d)))+[«»\\w;&а-яёА-Я\\d-(),\\s]*(\\.|!|\\?)");
+        Matcher m = p.matcher(content);
+        while (m.find())
+            list.add(m.group());
+        return list;
+    }
+
     public static void main(String[] args) {
-        StringBuilder stringBuilder = Parser.getFileContent("src/main/resources/Java.SE.03.Information handling_task_attachment.html");
-        System.out.println(stringBuilder);
+        LinkedList<String> list = Parser.getPicRefers(
+                getFileContent("src/main/resources/Java.SE.03.Information handling_task_attachment.html"));
+        for (String i: list)
+            System.out.println(i);
     }
 }
