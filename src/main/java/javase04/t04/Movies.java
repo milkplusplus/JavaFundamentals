@@ -1,9 +1,7 @@
 package javase04.t04;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Movies {
 
@@ -13,7 +11,7 @@ public class Movies {
         return collection;
     }
 
-    public void loadCollection(String path) {
+    public void load(String path) {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
             collection = (Map<String, Set<String>>)in.readObject();
         } catch (Exception e) {
@@ -21,11 +19,23 @@ public class Movies {
         }
     }
 
-    public void saveCollection(String path) {
+    public void save(String path) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path))) {
             out.writeObject(collection);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void add(String film, String actor) {
+        if (collection.containsKey(film))
+            collection.get(film).add(actor);
+        else
+            collection.put(film, new HashSet<>(Collections.singleton(actor)));
+    }
+
+    public Set<String> delete(String film) {
+        Set<String> s = collection.remove(film);
+        return s;
     }
 }
