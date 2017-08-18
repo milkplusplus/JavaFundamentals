@@ -8,6 +8,7 @@ import java.util.Properties;
 @SuppressWarnings("WeakerAccess")
 public class PropertyWithMapReader {
 
+    @SuppressWarnings("SameParameterValue")
     static HashMap<Object, Object> get(String path) {
         InputStream in = PropertyWithMapReader.class.getClassLoader().getResourceAsStream(path);
         Properties property = new Properties();
