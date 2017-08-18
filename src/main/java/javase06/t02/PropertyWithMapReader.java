@@ -1,16 +1,17 @@
-package javase05.t02;
+package javase06.t02;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Properties;
 
 @SuppressWarnings("WeakerAccess")
-public class PropertyReader {
+public class PropertyWithMapReader {
 
-    static String get(String path, String key) {
-        InputStream in = PropertyReader.class.getClassLoader().getResourceAsStream(path);
+    static HashMap<Object, Object> get(String path) {
+        InputStream in = PropertyWithMapReader.class.getClassLoader().getResourceAsStream(path);
         Properties property = new Properties();
-        String result;
+        HashMap<Object, Object> result = new HashMap<>();
         if (in != null) {
             try {
                 property.load(in);
@@ -20,16 +21,15 @@ public class PropertyReader {
                     System.out.println("An I/O error occurred when file was closing");
                     e.printStackTrace();
                 }
-                result = property.getProperty(key);
-                if (null == result)
-                    result = String.format("Key '%s' not found in %s", key, path);
+                result = new HashMap<>(property);
             } catch (IOException e) {
-                result = "An error occurred when reading from the input stream";
+                System.out.println("An error occurred when reading from the input stream");
                 e.printStackTrace();
             }
         }
         else
-            result = String.format("%s file not found", path);
+            System.out.println(String.format("%s file not found", path));
         return result;
     }
 }
+
