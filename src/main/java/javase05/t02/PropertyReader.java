@@ -18,13 +18,13 @@ public class PropertyReader {
                 property.load(in);
                 result = property.getProperty(key);
                 if (null == result)
-                    result = String.format("Key %s not found in %s", key, path);
+                    result = String.format("Key '%s' not found in %s", key, path);
             } catch (IOException e) {
                 result = "An error occurred when reading from the input stream";
             }
         }
         else
-            result = "file not found";
+            result = String.format("%s file not found", path);
         return result;
     }
 }

@@ -9,7 +9,21 @@ public class PropertyReaderTest {
 
     @Test
     public void get() {
-        String s = PropertyReader.get("Properties.properties", "k", StandardCharsets.UTF_8);
-        assertEquals(true, s.equals("Hello?"));
+        assertEquals(true, PropertyReader.get("Properties.properties",
+                "k", StandardCharsets.UTF_8).equals("Hello?"));
+    }
+
+    @Test
+    public void getWrongKey() {
+        assertEquals(true,
+                PropertyReader.get("Properties.properties", "key", StandardCharsets.UTF_8)
+                        .equals("Key 'key' not found in Properties.properties"));
+    }
+
+    @Test
+    public void getWrongPath() {
+        assertEquals(true,
+                PropertyReader.get("P.properties", "k", StandardCharsets.UTF_8)
+                        .equals("P.properties file not found"));
     }
 }
