@@ -44,36 +44,31 @@ public enum Discipline {
         return null;
     }
 
-    // need to optimize this function later
-    // (dunno why i decided to realize this with LinkedList instead of single DisciplineListener)
+    @SuppressWarnings("unchecked")
     private static DisciplineListener findBestListenerGrade(LinkedList<DisciplineListener> gradeList) {
             gradeList.sort(Comparator.comparingInt(d -> d.getDiscipline().getGradeType().ordinal()));
-            LinkedList<DisciplineListener> IntegerGradeList = new LinkedList<>();
-            LinkedList<DisciplineListener> DoubleGradeList = new LinkedList<>();
+            DisciplineListener maxIntegerGrade = new DisciplineListener(new Student("Default name",
+                    "Default group"), 0, Discipline.values()[0]);
+            DisciplineListener maxDoubleGrade = new DisciplineListener(new Student("Default name",
+                    "Default group"), 0.0, Discipline.values()[0]);
             int counter = 0;
             for (; (counter < gradeList.size()) && (gradeList.get(counter).getDiscipline().getGradeType() ==
                     GradeType.INTEGER); counter++)
-                IntegerGradeList.add(gradeList.get(counter));
+                if ( (int)gradeList.get(counter).getGrade() > (int)maxIntegerGrade.getGrade())
+                    maxIntegerGrade = gradeList.get(counter);
             for (; counter < gradeList.size(); counter++)
-                DoubleGradeList.add(gradeList.get(counter));
-            if ((IntegerGradeList.size() == 0) || (DoubleGradeList.size() == 0)) {
-                 if (IntegerGradeList.size() == 0){
-                     DoubleGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) ->
-                             (Double.compare((Double)lis1.getGrade(), (Double)lis2.getGrade())));
-                     return DoubleGradeList.getLast();
-                 }
-                 else {
-                     IntegerGradeList.sort(Comparator.comparingInt(lis -> (Integer) lis.getGrade()));
-                     return IntegerGradeList.getLast();
-                 }
+                if ( (double)gradeList.get(counter).getGrade() > (double)maxDoubleGrade.getGrade())
+                    maxDoubleGrade = gradeList.get(counter);
+            if ((Double.compare(0.0, maxIntegerGrade.getGrade().doubleValue()) == 0) || (Double.compare(0.0, (Double)maxDoubleGrade.getGrade()) == 0)) {
+                if (Double.compare(0.0, maxIntegerGrade.getGrade().doubleValue()) == 0)
+                    return maxDoubleGrade;
+                else
+                    return maxIntegerGrade;
             }
-            DoubleGradeList.sort( (DisciplineListener lis1, DisciplineListener lis2) ->
-                    (Double.compare((Double)lis1.getGrade(), (Double)lis2.getGrade())));
-            IntegerGradeList.sort(Comparator.comparingInt(lis -> (Integer) lis.getGrade()));
-            if ( Double.compare(IntegerGradeList.getLast().getGrade().doubleValue(),
-                    DoubleGradeList.getLast().getGrade().doubleValue()) >= 0 )
-                return IntegerGradeList.getLast();
-            return DoubleGradeList.getLast();
+            if (Double.compare(maxIntegerGrade.getGrade().doubleValue(), (double)maxDoubleGrade.getGrade()) > 0)
+                return maxIntegerGrade;
+            else
+                return maxDoubleGrade;
     }
 
     public GradeType getGradeType() {
