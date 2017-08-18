@@ -2,20 +2,23 @@ package javase05.t02;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.Properties;
 
 @SuppressWarnings("WeakerAccess")
 public class PropertyReader {
 
-    static String get(String path, String key, Charset charset) {
-        InputStream iStream = PropertyReader.class.getClassLoader().getResourceAsStream(path);
+    static String get(String path, String key) {
+        InputStream in = PropertyReader.class.getClassLoader().getResourceAsStream(path);
         Properties property = new Properties();
         String result;
-        if (iStream != null) {
-            try(InputStreamReader in = new InputStreamReader(iStream, charset)) {
+        if (in != null) {
+            try {
                 property.load(in);
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    System.out.println("An I/O error occurs when file was closing");
+                }
                 result = property.getProperty(key);
                 if (null == result)
                     result = String.format("Key '%s' not found in %s", key, path);
