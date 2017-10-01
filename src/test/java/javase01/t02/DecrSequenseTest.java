@@ -14,5 +14,4 @@ public class DecrSequenseTest {
         double prevA = 1 / Math.pow(result, 2);
         assertTrue((a < eps) && (prevA >= eps));
     }
-
 }
